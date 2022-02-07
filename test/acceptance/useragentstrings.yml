@@ -89,7 +89,6 @@
         browser:
           name: "Chrome"
           version: "29.0.1547.57"
-          name: "Blink"
     -
       ua: "Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.2 Safari/537.36"
       spec:
@@ -451,13 +450,6 @@
           version: "3.2.3"
 
     -
-      ua: "Mozilla/5.0 (iPhone; CPU iPhone OS 7_0_4 like Mac OS X) AppleWebKit/537.51.1 (KHTML, like Gecko) Mobile/11B554a"
-      spec:
-        browser:
-          name: "Safari"
-          
-
-    -
       ua: "Mozilla/5.0 (iPhone Simulator; U; CPU iPhone OS 4_3_2 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8H7 Safari/6533.18.5"
       spec:
         browser:
@@ -582,12 +574,6 @@
         browser:
           name: "Safari"
           version: "9.0"
-          
-
-    - ua: "Mozilla/5.0 (iPhone; CPU iPhone OS 11_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15G77 [FBAN/FBIOS;FBDV/iPhone7,2;FBMD/iPhone;FBSN/iOS;FBSV/11.4.1;FBSS/2;FBCR/vfnl;FBID/phone;FBLC/nl_NL;FBOP/5;FBRV/0]"
-      spec:
-        browser:
-          name: "Safari"
           
 
   Internet Explorer:
@@ -1131,12 +1117,6 @@
           name: "WebOS Browser"
           version: "1.0"
 
-    -
-      ua: "Mozilla/5.0 (Web0S; Linux/SmartTV) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.122 Safari/537.36 WebAppManager"
-      spec:
-        browser:
-          name: "WebOS Browser"
-          name: "Blink"
   Android Browser:
     -
       ua: "Mozilla/5.0 (Linux; U; Android 4.4.2; de-de; Nexus 7 Build/KOT49H) AppleWebKit/537.16 (KHTML, like Gecko) Version/4.0 Mobile Safari/537.16"
@@ -1542,14 +1522,6 @@
           version: "4.2.4.0"
 
 
-  PlayStation 4:
-    -
-      ua: "Mozilla/5.0 (PlayStation 4 6.20) AppleWebKit/605.1.15 (KHTML, like Gecko) "
-      spec:
-        browser:
-          name: "PlayStation 4"
-          
-
   Roku:
     -
       ua: "Roku/DVP-9.0 (047.00E09044A)"
@@ -1643,11 +1615,5 @@
           name: "Miui"
           version: "11.9.3"
 
-
-    -
-      ua: "Mozilla/5.0 (Linux; U; Android 9; fr-fr; Redmi Note 8 Pro Build/PPR1.180610.011) AppleWebKit/537.36 (KHTML like Gecko) Version/4.0 Chrome/71.0.3578.141 Mobile Safari/537.36 XiaoMi/MiuiBrowser"
-      spec:
-        browser:
-          name: "Miui"
 
 

@@ -23,17 +23,16 @@
  * return true/false to get the Parser know if this browser descriptor matches the UA or not.
  */
 
-
 /**
-   * Get first matched item for a string
-   * @param {RegExp} regexp
-   * @param {String} ua
-   * @return {Array|{index: number, input: string}|*|boolean|string}
-   */
- const getFirstMatch = (regexp, ua) => {
+ * Get first matched item for a string
+ * @param {RegExp} regexp
+ * @param {String} ua
+ * @return {Array|{index: number, input: string}|*|boolean|string}
+ */
+const getFirstMatch = (regexp, ua) => {
   const match = ua.match(regexp);
-  return (match && match.length > 0 && match[1]) || '';
-}
+  return (match && match.length > 0 && match[1]) || "";
+};
 
 /**
  * Get second matched item for a string
@@ -43,26 +42,34 @@
  */
 const getSecondMatch = (regexp, ua) => {
   const match = ua.match(regexp);
-  return (match && match.length > 1 && match[2]) || '';
-}
+  return (match && match.length > 1 && match[2]) || "";
+};
 
 const commonVersionIdentifier = /version\/(\d+(\.?_?\d+)+)/i;
+
+const getBrowserVersion = (regexes = [], ua) => {
+  for (const regex of regexes) {
+    const result = getFirstMatch(regex, ua);
+    if (result) {
+      return result;
+    }
+  }
+
+  return null;
+};
 
 const browsersList = [
   /* Googlebot */
   {
     test: [/googlebot/i],
     describe(ua) {
-      const browser = {
-        name: 'Googlebot',
+      return {
+        name: "Googlebot",
+        version: getBrowserVersion(
+          [/googlebot\/(\d+(\.\d+))/i, commonVersionIdentifier],
+          ua
+        ),
       };
-      const version = getFirstMatch(/googlebot\/(\d+(\.\d+))/i, ua) || getFirstMatch(commonVersionIdentifier, ua);
-
-      if (version) {
-        browser.version = version;
-      }
-
-      return browser;
     },
   },
 
@@ -70,16 +77,13 @@ const browsersList = [
   {
     test: [/opera/i],
     describe(ua) {
-      const browser = {
-        name: 'Opera',
+      return {
+        name: "Opera",
+        version: getBrowserVersion(
+          [commonVersionIdentifier, /(?:opera)[\s/](\d+(\.?_?\d+)+)/i],
+          ua
+        ),
       };
-      const version = getFirstMatch(commonVersionIdentifier, ua) || getFirstMatch(/(?:opera)[\s/](\d+(\.?_?\d+)+)/i, ua);
-
-      if (version) {
-        browser.version = version;
-      }
-
-      return browser;
     },
   },
 
@@ -87,559 +91,382 @@ const browsersList = [
   {
     test: [/opr\/|opios/i],
     describe(ua) {
-      const browser = {
-        name: 'Opera',
+      return {
+        name: "Opera",
+        version: getBrowserVersion(
+          [/(?:opr|opios)[\s/](\S+)/i, commonVersionIdentifier],
+          ua
+        ),
       };
-      const version = getFirstMatch(/(?:opr|opios)[\s/](\S+)/i, ua) || getFirstMatch(commonVersionIdentifier, ua);
-
-      if (version) {
-        browser.version = version;
-      }
-
-      return browser;
     },
   },
   {
     test: [/SamsungBrowser/i],
     describe(ua) {
-      const browser = {
-        name: 'Samsung Internet for Android',
+      return {
+        name: "Samsung Internet for Android",
+        version: getBrowserVersion(
+          [commonVersionIdentifier, /(?:SamsungBrowser)[\s/](\d+(\.?_?\d+)+)/i],
+          ua
+        ),
       };
-      const version = getFirstMatch(commonVersionIdentifier, ua) || getFirstMatch(/(?:SamsungBrowser)[\s/](\d+(\.?_?\d+)+)/i, ua);
-
-      if (version) {
-        browser.version = version;
-      }
-
-      return browser;
     },
   },
   {
     test: [/Whale/i],
     describe(ua) {
-      const browser = {
-        name: 'NAVER Whale Browser',
+      return {
+        name: "NAVER Whale Browser",
+        version: getBrowserVersion(
+          [commonVersionIdentifier, /(?:whale)[\s/](\d+(?:\.\d+)+)/i],
+          ua
+        ),
       };
-      const version = getFirstMatch(commonVersionIdentifier, ua) || getFirstMatch(/(?:whale)[\s/](\d+(?:\.\d+)+)/i, ua);
-
-      if (version) {
-        browser.version = version;
-      }
-
-      return browser;
     },
   },
   {
     test: [/MZBrowser/i],
     describe(ua) {
-      const browser = {
-        name: 'MZ Browser',
+      return {
+        name: "MZ Browser",
+        version: getBrowserVersion(
+          [/(?:MZBrowser)[\s/](\d+(?:\.\d+)+)/i, commonVersionIdentifier],
+          ua
+        ),
       };
-      const version = getFirstMatch(/(?:MZBrowser)[\s/](\d+(?:\.\d+)+)/i, ua) || getFirstMatch(commonVersionIdentifier, ua);
-
-      if (version) {
-        browser.version = version;
-      }
-
-      return browser;
     },
   },
   {
     test: [/focus/i],
     describe(ua) {
-      const browser = {
-        name: 'Focus',
+      return {
+        name: "Focus",
+        version: getBrowserVersion(
+          [/(?:focus)[\s/](\d+(?:\.\d+)+)/i, commonVersionIdentifier],
+          ua
+        ),
       };
-      const version = getFirstMatch(/(?:focus)[\s/](\d+(?:\.\d+)+)/i, ua) || getFirstMatch(commonVersionIdentifier, ua);
-
-      if (version) {
-        browser.version = version;
-      }
-
-      return browser;
     },
   },
   {
     test: [/swing/i],
     describe(ua) {
-      const browser = {
-        name: 'Swing',
+      return {
+        name: "Swing",
+        version: getBrowserVersion(
+          [/(?:swing)[\s/](\d+(?:\.\d+)+)/i, commonVersionIdentifier],
+          ua
+        ),
       };
-      const version = getFirstMatch(/(?:swing)[\s/](\d+(?:\.\d+)+)/i, ua) || getFirstMatch(commonVersionIdentifier, ua);
-
-      if (version) {
-        browser.version = version;
-      }
-
-      return browser;
     },
   },
   {
     test: [/coast/i],
     describe(ua) {
-      const browser = {
-        name: 'Opera Coast',
+      return {
+        name: "Opera Coast",
+        version: getBrowserVersion(
+          [commonVersionIdentifier, /(?:coast)[\s/](\d+(\.?_?\d+)+)/i],
+          ua
+        ),
       };
-      const version = getFirstMatch(commonVersionIdentifier, ua) || getFirstMatch(/(?:coast)[\s/](\d+(\.?_?\d+)+)/i, ua);
-
-      if (version) {
-        browser.version = version;
-      }
-
-      return browser;
     },
   },
   {
     test: [/opt\/\d+(?:.?_?\d+)+/i],
     describe(ua) {
-      const browser = {
-        name: 'Opera Touch',
+      return {
+        name: "Opera Touch",
+        version: getBrowserVersion(
+          [/(?:opt)[\s/](\d+(\.?_?\d+)+)/i, commonVersionIdentifier],
+          ua
+        ),
       };
-      const version = getFirstMatch(/(?:opt)[\s/](\d+(\.?_?\d+)+)/i, ua) || getFirstMatch(commonVersionIdentifier, ua);
-
-      if (version) {
-        browser.version = version;
-      }
-
-      return browser;
     },
   },
   {
     test: [/yabrowser/i],
     describe(ua) {
-      const browser = {
-        name: 'Yandex Browser',
+      return {
+        name: "Yandex Browser",
+        version: getBrowserVersion(
+          [/(?:yabrowser)[\s/](\d+(\.?_?\d+)+)/i, commonVersionIdentifier],
+          ua
+        ),
       };
-      const version = getFirstMatch(/(?:yabrowser)[\s/](\d+(\.?_?\d+)+)/i, ua) || getFirstMatch(commonVersionIdentifier, ua);
-
-      if (version) {
-        browser.version = version;
-      }
-
-      return browser;
     },
   },
   {
     test: [/ucbrowser/i],
     describe(ua) {
-      const browser = {
-        name: 'UC Browser',
+      return {
+        name: "UC Browser",
+        version: getBrowserVersion(
+          [commonVersionIdentifier, /(?:ucbrowser)[\s/](\d+(\.?_?\d+)+)/i],
+          ua
+        ),
       };
-      const version = getFirstMatch(commonVersionIdentifier, ua) || getFirstMatch(/(?:ucbrowser)[\s/](\d+(\.?_?\d+)+)/i, ua);
-
-      if (version) {
-        browser.version = version;
-      }
-
-      return browser;
     },
   },
   {
     test: [/Maxthon|mxios/i],
     describe(ua) {
-      const browser = {
-        name: 'Maxthon',
+      return {
+        name: "Maxthon",
+        version: getBrowserVersion(
+          [commonVersionIdentifier, /(?:Maxthon|mxios)[\s/](\d+(\.?_?\d+)+)/i],
+          ua
+        ),
       };
-      const version = getFirstMatch(commonVersionIdentifier, ua) || getFirstMatch(/(?:Maxthon|mxios)[\s/](\d+(\.?_?\d+)+)/i, ua);
-
-      if (version) {
-        browser.version = version;
-      }
-
-      return browser;
     },
   },
   {
     test: [/epiphany/i],
     describe(ua) {
-      const browser = {
-        name: 'Epiphany',
+      return {
+        name: "Epiphany",
+        version: getBrowserVersion(
+          [commonVersionIdentifier, /(?:epiphany)[\s/](\d+(\.?_?\d+)+)/i],
+          ua
+        ),
       };
-      const version = getFirstMatch(commonVersionIdentifier, ua) || getFirstMatch(/(?:epiphany)[\s/](\d+(\.?_?\d+)+)/i, ua);
-
-      if (version) {
-        browser.version = version;
-      }
-
-      return browser;
     },
   },
   {
     test: [/puffin/i],
     describe(ua) {
-      const browser = {
-        name: 'Puffin',
+      return {
+        name: "Puffin",
+        version: getBrowserVersion(
+          [commonVersionIdentifier, /(?:puffin)[\s/](\d+(\.?_?\d+)+)/i],
+          ua
+        ),
       };
-      const version = getFirstMatch(commonVersionIdentifier, ua) || getFirstMatch(/(?:puffin)[\s/](\d+(\.?_?\d+)+)/i, ua);
-
-      if (version) {
-        browser.version = version;
-      }
-
-      return browser;
     },
   },
   {
     test: [/sleipnir/i],
     describe(ua) {
-      const browser = {
-        name: 'Sleipnir',
+      return {
+        name: "Sleipnir",
+        version: getBrowserVersion(
+          [commonVersionIdentifier, /(?:sleipnir)[\s/](\d+(\.?_?\d+)+)/i],
+          ua
+        ),
       };
-      const version = getFirstMatch(commonVersionIdentifier, ua) || getFirstMatch(/(?:sleipnir)[\s/](\d+(\.?_?\d+)+)/i, ua);
-
-      if (version) {
-        browser.version = version;
-      }
-
-      return browser;
     },
   },
   {
     test: [/k-meleon/i],
     describe(ua) {
-      const browser = {
-        name: 'K-Meleon',
+      return {
+        name: "K-Meleon",
+        version: getBrowserVersion(
+          [commonVersionIdentifier, /(?:k-meleon)[\s/](\d+(\.?_?\d+)+)/i],
+          ua
+        ),
       };
-      const version = getFirstMatch(commonVersionIdentifier, ua) || getFirstMatch(/(?:k-meleon)[\s/](\d+(\.?_?\d+)+)/i, ua);
-
-      if (version) {
-        browser.version = version;
-      }
-
-      return browser;
     },
   },
   {
     test: [/micromessenger/i],
     describe(ua) {
-      const browser = {
-        name: 'WeChat',
+      return {
+        name: "WeChat",
+        version: getBrowserVersion(
+          [/(?:micromessenger)[\s/](\d+(\.?_?\d+)+)/i, commonVersionIdentifier],
+          ua
+        ),
       };
-      const version = getFirstMatch(/(?:micromessenger)[\s/](\d+(\.?_?\d+)+)/i, ua) || getFirstMatch(commonVersionIdentifier, ua);
-
-      if (version) {
-        browser.version = version;
-      }
-
-      return browser;
     },
   },
   {
     test: [/qqbrowser/i],
     describe(ua) {
-      const browser = {
-        name: (/qqbrowserlite/i).test(ua) ? 'QQ Browser Lite' : 'QQ Browser',
+      return {
+        name: /qqbrowserlite/i.test(ua) ? "QQ Browser Lite" : "QQ Browser",
+        version: getBrowserVersion([/(?:qqbrowserlite|qqbrowser)[/](\d+(\.?_?\d+)+)/i, commonVersionIdentifier], ua),
       };
-      const version = getFirstMatch(/(?:qqbrowserlite|qqbrowser)[/](\d+(\.?_?\d+)+)/i, ua) || getFirstMatch(commonVersionIdentifier, ua);
-
-      if (version) {
-        browser.version = version;
-      }
-
-      return browser;
     },
   },
   {
     test: [/msie|trident/i],
     describe(ua) {
-      const browser = {
-        name: 'Internet Explorer',
+      return {
+        name: "Internet Explorer",
+        version: getBrowserVersion([/(?:msie |rv:)(\d+(\.?_?\d+)+)/i], ua),
       };
-      const version = getFirstMatch(/(?:msie |rv:)(\d+(\.?_?\d+)+)/i, ua);
-
-      if (version) {
-        browser.version = version;
-      }
-
-      return browser;
     },
   },
   {
     test: [/\sedg\//i],
     describe(ua) {
-      const browser = {
-        name: 'Microsoft Edge',
+      return {
+        name: "Microsoft Edge",
+        version: getBrowserVersion([/\sedg\/(\d+(\.?_?\d+)+)/i], ua),
       };
-
-      const version = getFirstMatch(/\sedg\/(\d+(\.?_?\d+)+)/i, ua);
-
-      if (version) {
-        browser.version = version;
-      }
-
-      return browser;
     },
   },
   {
     test: [/edg([ea]|ios)/i],
     describe(ua) {
-      const browser = {
-        name: 'Microsoft Edge',
+      return {
+        name: "Microsoft Edge",
+        version: getSecondMatch(/edg([ea]|ios)\/(\d+(\.?_?\d+)+)/i, ua),
       };
-
-      const version = getSecondMatch(/edg([ea]|ios)\/(\d+(\.?_?\d+)+)/i, ua);
-
-      if (version) {
-        browser.version = version;
-      }
-
-      return browser;
     },
   },
   {
     test: [/vivaldi/i],
     describe(ua) {
-      const browser = {
-        name: 'Vivaldi',
+      return {
+        name: "Vivaldi",
+        version: getBrowserVersion([/vivaldi\/(\d+(\.?_?\d+)+)/i], ua),
       };
-      const version = getFirstMatch(/vivaldi\/(\d+(\.?_?\d+)+)/i, ua);
-
-      if (version) {
-        browser.version = version;
-      }
-
-      return browser;
     },
   },
   {
     test: [/seamonkey/i],
     describe(ua) {
-      const browser = {
-        name: 'SeaMonkey',
+      return {
+        name: "SeaMonkey",
+        version: getBrowserVersion([/seamonkey\/(\d+(\.?_?\d+)+)/i], ua),
       };
-      const version = getFirstMatch(/seamonkey\/(\d+(\.?_?\d+)+)/i, ua);
-
-      if (version) {
-        browser.version = version;
-      }
-
-      return browser;
     },
   },
   {
     test: [/sailfish/i],
     describe(ua) {
-      const browser = {
-        name: 'Sailfish',
+      return {
+        name: "Sailfish",
+        version: getBrowserVersion([/sailfish\s?browser\/(\d+(\.\d+)?)/i], ua),
       };
-
-      const version = getFirstMatch(/sailfish\s?browser\/(\d+(\.\d+)?)/i, ua);
-
-      if (version) {
-        browser.version = version;
-      }
-
-      return browser;
     },
   },
   {
     test: [/silk/i],
     describe(ua) {
-      const browser = {
-        name: 'Amazon Silk',
+      return {
+        name: "Amazon Silk",
+        version: getBrowserVersion([/silk\/(\d+(\.?_?\d+)+)/i], ua),
       };
-      const version = getFirstMatch(/silk\/(\d+(\.?_?\d+)+)/i, ua);
-
-      if (version) {
-        browser.version = version;
-      }
-
-      return browser;
     },
   },
   {
     test: [/phantom/i],
     describe(ua) {
-      const browser = {
-        name: 'PhantomJS',
+      return {
+        name: "PhantomJS",
+        version: getBrowserVersion([/phantomjs\/(\d+(\.?_?\d+)+)/i], ua),
       };
-      const version = getFirstMatch(/phantomjs\/(\d+(\.?_?\d+)+)/i, ua);
-
-      if (version) {
-        browser.version = version;
-      }
-
-      return browser;
     },
   },
   {
     test: [/slimerjs/i],
     describe(ua) {
-      const browser = {
-        name: 'SlimerJS',
+      return {
+        name: "SlimerJS",
+        version: getBrowserVersion([/slimerjs\/(\d+(\.?_?\d+)+)/i], ua),
       };
-      const version = getFirstMatch(/slimerjs\/(\d+(\.?_?\d+)+)/i, ua);
-
-      if (version) {
-        browser.version = version;
-      }
-
-      return browser;
     },
   },
   {
     test: [/blackberry|\bbb\d+/i, /rim\stablet/i],
     describe(ua) {
-      const browser = {
-        name: 'BlackBerry',
+      return {
+        name: "BlackBerry",
+        version: getBrowserVersion([commonVersionIdentifier, /blackberry[\d]+\/(\d+(\.?_?\d+)+)/i], ua),
       };
-      const version = getFirstMatch(commonVersionIdentifier, ua) || getFirstMatch(/blackberry[\d]+\/(\d+(\.?_?\d+)+)/i, ua);
-
-      if (version) {
-        browser.version = version;
-      }
-
-      return browser;
     },
   },
   {
     test: [/(web|hpw)[o0]s/i],
     describe(ua) {
-      const browser = {
-        name: 'WebOS Browser',
+      return {
+        name: "WebOS Browser",
+        version: getBrowserVersion([commonVersionIdentifier, /w(?:eb)?[o0]sbrowser\/(\d+(\.?_?\d+)+)/i], ua),
       };
-      const version = getFirstMatch(commonVersionIdentifier, ua) || getFirstMatch(/w(?:eb)?[o0]sbrowser\/(\d+(\.?_?\d+)+)/i, ua);
-
-      if (version) {
-        browser.version = version;
-      }
-
-      return browser;
     },
   },
   {
     test: [/bada/i],
     describe(ua) {
-      const browser = {
-        name: 'Bada',
+      return {
+        name: "Bada",
+        version: getBrowserVersion([/dolfin\/(\d+(\.?_?\d+)+)/i], ua),
       };
-      const version = getFirstMatch(/dolfin\/(\d+(\.?_?\d+)+)/i, ua);
-
-      if (version) {
-        browser.version = version;
-      }
-
-      return browser;
     },
   },
   {
     test: [/tizen/i],
     describe(ua) {
-      const browser = {
-        name: 'Tizen',
+      return {
+        name: "Tizen",
+        version: getBrowserVersion([/(?:tizen\s?)?browser\/(\d+(\.?_?\d+)+)/i, commonVersionIdentifier], ua),
       };
-      const version = getFirstMatch(/(?:tizen\s?)?browser\/(\d+(\.?_?\d+)+)/i, ua) || getFirstMatch(commonVersionIdentifier, ua);
-
-      if (version) {
-        browser.version = version;
-      }
-
-      return browser;
     },
   },
   {
     test: [/qupzilla/i],
     describe(ua) {
-      const browser = {
-        name: 'QupZilla',
+      return {
+        name: "QupZilla",
+        version: getBrowserVersion([/(?:qupzilla)[\s/](\d+(\.?_?\d+)+)/i, commonVersionIdentifier], ua),
       };
-      const version = getFirstMatch(/(?:qupzilla)[\s/](\d+(\.?_?\d+)+)/i, ua) || getFirstMatch(commonVersionIdentifier, ua);
-
-      if (version) {
-        browser.version = version;
-      }
-
-      return browser;
     },
   },
   {
     test: [/firefox|iceweasel|fxios/i],
     describe(ua) {
-      const browser = {
-        name: 'Firefox',
+      return {
+        name: "Firefox",
+        version: getBrowserVersion([/(?:firefox|iceweasel|fxios)[\s/](\d+(\.?_?\d+)+)/i], ua),
       };
-      const version = getFirstMatch(/(?:firefox|iceweasel|fxios)[\s/](\d+(\.?_?\d+)+)/i, ua);
-
-      if (version) {
-        browser.version = version;
-      }
-
-      return browser;
     },
   },
   {
     test: [/electron/i],
     describe(ua) {
-      const browser = {
-        name: 'Electron',
+      return {
+        name: "Electron",
+        version: getBrowserVersion([/(?:electron)\/(\d+(\.?_?\d+)+)/i], ua),
       };
-      const version = getFirstMatch(/(?:electron)\/(\d+(\.?_?\d+)+)/i, ua);
-
-      if (version) {
-        browser.version = version;
-      }
-
-      return browser;
     },
   },
   {
     test: [/MiuiBrowser/i],
     describe(ua) {
-      const browser = {
-        name: 'Miui',
+      return {
+        name: "Miui",
+        version: getBrowserVersion([/(?:MiuiBrowser)[\s/](\d+(\.?_?\d+)+)/i], ua),
       };
-      const version = getFirstMatch(/(?:MiuiBrowser)[\s/](\d+(\.?_?\d+)+)/i, ua);
-
-      if (version) {
-        browser.version = version;
-      }
-
-      return browser;
     },
   },
   {
     test: [/chromium/i],
     describe(ua) {
-      const browser = {
-        name: 'Chromium',
+      return {
+        name: "Chromium",
+        version: getBrowserVersion([/(?:chromium)[\s/](\d+(\.?_?\d+)+)/i, commonVersionIdentifier], ua),
       };
-      const version = getFirstMatch(/(?:chromium)[\s/](\d+(\.?_?\d+)+)/i, ua) || getFirstMatch(commonVersionIdentifier, ua);
-
-      if (version) {
-        browser.version = version;
-      }
-
-      return browser;
     },
   },
   {
     test: [/chrome|crios|crmo/i],
     describe(ua) {
-      const browser = {
-        name: 'Chrome',
+      return {
+        name: "Chrome",
+        version: getBrowserVersion([/(?:chrome|crios|crmo)\/(\d+(\.?_?\d+)+)/i], ua),
       };
-      const version = getFirstMatch(/(?:chrome|crios|crmo)\/(\d+(\.?_?\d+)+)/i, ua);
-
-      if (version) {
-        browser.version = version;
-      }
-
-      return browser;
     },
   },
   {
     test: [/GSA/i],
     describe(ua) {
-      const browser = {
-        name: 'Google Search',
+      return {
+        name: "Google Search",
+        version: getBrowserVersion([/(?:GSA)\/(\d+(\.?_?\d+)+)/i], ua),
       };
-      const version = getFirstMatch(/(?:GSA)\/(\d+(\.?_?\d+)+)/i, ua);
-
-      if (version) {
-        browser.version = version;
-      }
-
-      return browser;
     },
   },
 
@@ -651,16 +478,10 @@ const browsersList = [
       return notLikeAndroid && butAndroid;
     },
     describe(ua) {
-      const browser = {
-        name: 'Android Browser',
+      return {
+        name: "Android Browser",
+        version: getBrowserVersion([commonVersionIdentifier], ua),
       };
-      const version = getFirstMatch(commonVersionIdentifier, ua);
-
-      if (version) {
-        browser.version = version;
-      }
-
-      return browser;
     },
   },
 
@@ -668,16 +489,10 @@ const browsersList = [
   {
     test: [/playstation 4/i],
     describe(ua) {
-      const browser = {
-        name: 'PlayStation 4',
+      return {
+        name: "PlayStation 4",
+        version: getBrowserVersion([commonVersionIdentifier], ua),
       };
-      const version = getFirstMatch(commonVersionIdentifier, ua);
-
-      if (version) {
-        browser.version = version;
-      }
-
-      return browser;
     },
   },
 
@@ -685,16 +500,10 @@ const browsersList = [
   {
     test: [/safari|applewebkit/i],
     describe(ua) {
-      const browser = {
-        name: 'Safari',
+      return {
+        name: "Safari",
+        version: getBrowserVersion([commonVersionIdentifier], ua),
       };
-      const version = getFirstMatch(commonVersionIdentifier, ua);
-
-      if (version) {
-        browser.version = version;
-      }
-
-      return browser;
     },
   },
 
@@ -708,8 +517,10 @@ const browsersList = [
        */
       const regexpWithoutDeviceSpec = /^(.*)\/(.*) /;
       const regexpWithDeviceSpec = /^(.*)\/(.*)[ \t]\((.*)/;
-      const hasDeviceSpec = ua.search('\\(') !== -1;
-      const regexp = hasDeviceSpec ? regexpWithDeviceSpec : regexpWithoutDeviceSpec;
+      const hasDeviceSpec = ua.search("\\(") !== -1;
+      const regexp = hasDeviceSpec
+        ? regexpWithDeviceSpec
+        : regexpWithoutDeviceSpec;
       return {
         name: getFirstMatch(regexp, ua),
         version: getSecondMatch(regexp, ua),
