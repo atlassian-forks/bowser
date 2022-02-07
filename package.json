@@ -1,6 +1,6 @@
 {
   "name": "bowser-ultralight",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Lightweight(er) browser detector, basically a trimmed down version of bowser",
   "keywords": [
     "browser",
