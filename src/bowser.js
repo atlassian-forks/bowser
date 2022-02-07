@@ -5,9 +5,6 @@
  * MIT License | (c) Denis Demchenko 2015-2019
  */
 import Parser from './parser.js';
-import {
-  BROWSER_MAP,
-} from './constants.js';
 
 /**
  * Bowser class.
@@ -52,10 +49,6 @@ class Bowser {
    */
   static parse(UA) {
     return (new Parser(UA)).getResult();
-  }
-
-  static get BROWSER_MAP() {
-    return BROWSER_MAP;
   }
 }
 

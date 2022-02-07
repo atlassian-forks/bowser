@@ -1,7 +1,7 @@
 {
-  "name": "bowser",
-  "version": "2.11.0",
-  "description": "Lightweight browser detector",
+  "name": "bowser-ultralight",
+  "version": "1.0.0",
+  "description": "Lightweight(er) browser detector, basically a trimmed down version of bowser",
   "keywords": [
     "browser",
     "useragent",

@@ -1,5 +1,4 @@
 import browserParsersList from './parser-browsers.js';
-
 /**
  * The main class that arranges the whole parsing process.
  */
