@@ -1,7 +1,7 @@
 {
   "name": "bowser-ultralight",
-  "version": "1.0.4",
-  "description": "Lightweight(er) browser detector, basically a trimmed down version of bowser",
+  "version": "1.0.5",
+  "description": "Lightweight(er) browser detector, basically a trimmed down version of bowser, specfically made for Atlassian",
   "keywords": [
     "browser",
     "useragent",
@@ -12,7 +12,7 @@
     "ender",
     "sniff"
   ],
-  "homepage": "https://github.com/lancedikson/bowser",
+  "homepage": "https://github.com/atlassian-forks/bowser",
   "author": "Dustin Diaz <dustin@dustindiaz.com> (http://dustindiaz.com)",
   "contributors": [
     {
@@ -26,7 +26,7 @@
   "types": "index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/lancedikson/bowser.git"
+    "url": "git+https://github.com/atlassian-forks/bowser"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.0",
@@ -62,7 +62,7 @@
     ]
   },
   "bugs": {
-    "url": "https://github.com/lancedikson/bowser/issues"
+    "url": "https://github.com/atlassian-forks/bowser/issues"
   },
   "directories": {
     "test": "test"
