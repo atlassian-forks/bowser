@@ -7,9 +7,6 @@
 import Parser from './parser.js';
 import {
   BROWSER_MAP,
-  ENGINE_MAP,
-  OS_MAP,
-  PLATFORMS_MAP,
 } from './constants.js';
 
 /**
@@ -59,18 +56,6 @@ class Bowser {
 
   static get BROWSER_MAP() {
     return BROWSER_MAP;
-  }
-
-  static get ENGINE_MAP() {
-    return ENGINE_MAP;
-  }
-
-  static get OS_MAP() {
-    return OS_MAP;
-  }
-
-  static get PLATFORMS_MAP() {
-    return PLATFORMS_MAP;
   }
 }
 

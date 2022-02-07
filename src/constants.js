@@ -83,34 +83,3 @@ export const BROWSER_MAP = {
   yandex: 'Yandex Browser',
 };
 
-export const PLATFORMS_MAP = {
-  tablet: 'tablet',
-  mobile: 'mobile',
-  desktop: 'desktop',
-  tv: 'tv',
-};
-
-export const OS_MAP = {
-  WindowsPhone: 'Windows Phone',
-  Windows: 'Windows',
-  MacOS: 'macOS',
-  iOS: 'iOS',
-  Android: 'Android',
-  WebOS: 'WebOS',
-  BlackBerry: 'BlackBerry',
-  Bada: 'Bada',
-  Tizen: 'Tizen',
-  Linux: 'Linux',
-  ChromeOS: 'Chrome OS',
-  PlayStation4: 'PlayStation 4',
-  Roku: 'Roku',
-};
-
-export const ENGINE_MAP = {
-  EdgeHTML: 'EdgeHTML',
-  Blink: 'Blink',
-  Trident: 'Trident',
-  Presto: 'Presto',
-  Gecko: 'Gecko',
-  WebKit: 'WebKit',
-};
