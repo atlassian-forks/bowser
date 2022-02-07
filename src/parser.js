@@ -1,4 +1,4 @@
-import browserParsersList from './parser-browsers.js';
+import browserParsersList from "./parser-browsers.js";
 /**
  * The main class that arranges the whole parsing process.
  */
@@ -16,7 +16,7 @@ class Parser {
    * @constructor
    */
   constructor(UA, skipParsing = false) {
-    if (UA === void (0) || UA === null || UA === '') {
+    if (UA === void 0 || UA === null || UA === "") {
       throw new Error("UserAgent parameter can't be empty");
     }
 
@@ -63,12 +63,12 @@ class Parser {
     this.parsedResult.browser = {};
 
     const browserDescriptor = browserParsersList.find((_browser) => {
-      if (typeof _browser.test === 'function') {
+      if (typeof _browser.test === "function") {
         return _browser.test(this);
       }
 
       if (_browser.test instanceof Array) {
-        return _browser.test.some(condition => this.test(condition));
+        return _browser.test.some((condition) => this.test(condition));
       }
 
       throw new Error("Browser's test function is not valid");
@@ -82,7 +82,9 @@ class Parser {
   }
 
   isMobile = () => {
-    return this.test(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i)
+    return this.test(
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
+    );
   };
 
   /**
@@ -107,11 +109,10 @@ class Parser {
    */
   getBrowserName(toLowerCase) {
     if (toLowerCase) {
-      return String(this.getBrowser().name).toLowerCase() || '';
+      return String(this.getBrowser().name).toLowerCase() || "";
     }
-    return this.getBrowser().name || '';
+    return this.getBrowser().name || "";
   }
-
 
   /**
    * Get browser's version

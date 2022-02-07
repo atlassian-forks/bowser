@@ -125,42 +125,6 @@ const browsersList = [
     },
   },
   {
-    test: [/MZBrowser/i],
-    describe(ua) {
-      return {
-        name: "MZ Browser",
-        version: getBrowserVersion(
-          [/(?:MZBrowser)[\s/](\d+(?:\.\d+)+)/i, commonVersionIdentifier],
-          ua
-        ),
-      };
-    },
-  },
-  {
-    test: [/focus/i],
-    describe(ua) {
-      return {
-        name: "Focus",
-        version: getBrowserVersion(
-          [/(?:focus)[\s/](\d+(?:\.\d+)+)/i, commonVersionIdentifier],
-          ua
-        ),
-      };
-    },
-  },
-  {
-    test: [/swing/i],
-    describe(ua) {
-      return {
-        name: "Swing",
-        version: getBrowserVersion(
-          [/(?:swing)[\s/](\d+(?:\.\d+)+)/i, commonVersionIdentifier],
-          ua
-        ),
-      };
-    },
-  },
-  {
     test: [/coast/i],
     describe(ua) {
       return {
@@ -181,111 +145,6 @@ const browsersList = [
           [/(?:opt)[\s/](\d+(\.?_?\d+)+)/i, commonVersionIdentifier],
           ua
         ),
-      };
-    },
-  },
-  {
-    test: [/yabrowser/i],
-    describe(ua) {
-      return {
-        name: "Yandex Browser",
-        version: getBrowserVersion(
-          [/(?:yabrowser)[\s/](\d+(\.?_?\d+)+)/i, commonVersionIdentifier],
-          ua
-        ),
-      };
-    },
-  },
-  {
-    test: [/ucbrowser/i],
-    describe(ua) {
-      return {
-        name: "UC Browser",
-        version: getBrowserVersion(
-          [commonVersionIdentifier, /(?:ucbrowser)[\s/](\d+(\.?_?\d+)+)/i],
-          ua
-        ),
-      };
-    },
-  },
-  {
-    test: [/Maxthon|mxios/i],
-    describe(ua) {
-      return {
-        name: "Maxthon",
-        version: getBrowserVersion(
-          [commonVersionIdentifier, /(?:Maxthon|mxios)[\s/](\d+(\.?_?\d+)+)/i],
-          ua
-        ),
-      };
-    },
-  },
-  {
-    test: [/epiphany/i],
-    describe(ua) {
-      return {
-        name: "Epiphany",
-        version: getBrowserVersion(
-          [commonVersionIdentifier, /(?:epiphany)[\s/](\d+(\.?_?\d+)+)/i],
-          ua
-        ),
-      };
-    },
-  },
-  {
-    test: [/puffin/i],
-    describe(ua) {
-      return {
-        name: "Puffin",
-        version: getBrowserVersion(
-          [commonVersionIdentifier, /(?:puffin)[\s/](\d+(\.?_?\d+)+)/i],
-          ua
-        ),
-      };
-    },
-  },
-  {
-    test: [/sleipnir/i],
-    describe(ua) {
-      return {
-        name: "Sleipnir",
-        version: getBrowserVersion(
-          [commonVersionIdentifier, /(?:sleipnir)[\s/](\d+(\.?_?\d+)+)/i],
-          ua
-        ),
-      };
-    },
-  },
-  {
-    test: [/k-meleon/i],
-    describe(ua) {
-      return {
-        name: "K-Meleon",
-        version: getBrowserVersion(
-          [commonVersionIdentifier, /(?:k-meleon)[\s/](\d+(\.?_?\d+)+)/i],
-          ua
-        ),
-      };
-    },
-  },
-  {
-    test: [/micromessenger/i],
-    describe(ua) {
-      return {
-        name: "WeChat",
-        version: getBrowserVersion(
-          [/(?:micromessenger)[\s/](\d+(\.?_?\d+)+)/i, commonVersionIdentifier],
-          ua
-        ),
-      };
-    },
-  },
-  {
-    test: [/qqbrowser/i],
-    describe(ua) {
-      return {
-        name: /qqbrowserlite/i.test(ua) ? "QQ Browser Lite" : "QQ Browser",
-        version: getBrowserVersion([/(?:qqbrowserlite|qqbrowser)[/](\d+(\.?_?\d+)+)/i, commonVersionIdentifier], ua),
       };
     },
   },
@@ -326,92 +185,11 @@ const browsersList = [
     },
   },
   {
-    test: [/seamonkey/i],
-    describe(ua) {
-      return {
-        name: "SeaMonkey",
-        version: getBrowserVersion([/seamonkey\/(\d+(\.?_?\d+)+)/i], ua),
-      };
-    },
-  },
-  {
-    test: [/sailfish/i],
-    describe(ua) {
-      return {
-        name: "Sailfish",
-        version: getBrowserVersion([/sailfish\s?browser\/(\d+(\.\d+)?)/i], ua),
-      };
-    },
-  },
-  {
-    test: [/silk/i],
-    describe(ua) {
-      return {
-        name: "Amazon Silk",
-        version: getBrowserVersion([/silk\/(\d+(\.?_?\d+)+)/i], ua),
-      };
-    },
-  },
-  {
-    test: [/phantom/i],
-    describe(ua) {
-      return {
-        name: "PhantomJS",
-        version: getBrowserVersion([/phantomjs\/(\d+(\.?_?\d+)+)/i], ua),
-      };
-    },
-  },
-  {
-    test: [/slimerjs/i],
-    describe(ua) {
-      return {
-        name: "SlimerJS",
-        version: getBrowserVersion([/slimerjs\/(\d+(\.?_?\d+)+)/i], ua),
-      };
-    },
-  },
-  {
-    test: [/blackberry|\bbb\d+/i, /rim\stablet/i],
-    describe(ua) {
-      return {
-        name: "BlackBerry",
-        version: getBrowserVersion([commonVersionIdentifier, /blackberry[\d]+\/(\d+(\.?_?\d+)+)/i], ua),
-      };
-    },
-  },
-  {
-    test: [/(web|hpw)[o0]s/i],
-    describe(ua) {
-      return {
-        name: "WebOS Browser",
-        version: getBrowserVersion([commonVersionIdentifier, /w(?:eb)?[o0]sbrowser\/(\d+(\.?_?\d+)+)/i], ua),
-      };
-    },
-  },
-  {
-    test: [/bada/i],
-    describe(ua) {
-      return {
-        name: "Bada",
-        version: getBrowserVersion([/dolfin\/(\d+(\.?_?\d+)+)/i], ua),
-      };
-    },
-  },
-  {
     test: [/tizen/i],
     describe(ua) {
       return {
         name: "Tizen",
         version: getBrowserVersion([/(?:tizen\s?)?browser\/(\d+(\.?_?\d+)+)/i, commonVersionIdentifier], ua),
-      };
-    },
-  },
-  {
-    test: [/qupzilla/i],
-    describe(ua) {
-      return {
-        name: "QupZilla",
-        version: getBrowserVersion([/(?:qupzilla)[\s/](\d+(\.?_?\d+)+)/i, commonVersionIdentifier], ua),
       };
     },
   },
@@ -430,15 +208,6 @@ const browsersList = [
       return {
         name: "Electron",
         version: getBrowserVersion([/(?:electron)\/(\d+(\.?_?\d+)+)/i], ua),
-      };
-    },
-  },
-  {
-    test: [/MiuiBrowser/i],
-    describe(ua) {
-      return {
-        name: "Miui",
-        version: getBrowserVersion([/(?:MiuiBrowser)[\s/](\d+(\.?_?\d+)+)/i], ua),
       };
     },
   },
@@ -480,17 +249,6 @@ const browsersList = [
     describe(ua) {
       return {
         name: "Android Browser",
-        version: getBrowserVersion([commonVersionIdentifier], ua),
-      };
-    },
-  },
-
-  /* PlayStation 4 */
-  {
-    test: [/playstation 4/i],
-    describe(ua) {
-      return {
-        name: "PlayStation 4",
         version: getBrowserVersion([commonVersionIdentifier], ua),
       };
     },

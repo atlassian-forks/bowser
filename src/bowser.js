@@ -4,7 +4,7 @@
  * MIT License | (c) Dustin Diaz 2012-2015
  * MIT License | (c) Denis Demchenko 2015-2019
  */
-import Parser from './parser.js';
+import Parser from "./parser.js";
 
 /**
  * Bowser class.
@@ -32,8 +32,8 @@ class Bowser {
    * const result = parser.getResult();
    */
   static getParser(UA, skipParsing = false) {
-    if (typeof UA !== 'string') {
-      throw new Error('UserAgent should be a string');
+    if (typeof UA !== "string") {
+      throw new Error("UserAgent should be a string");
     }
     return new Parser(UA, skipParsing);
   }
@@ -48,7 +48,7 @@ class Bowser {
    * const result = Bowser.parse(window.navigator.userAgent);
    */
   static parse(UA) {
-    return (new Parser(UA)).getResult();
+    return new Parser(UA).getResult();
   }
 }
 
